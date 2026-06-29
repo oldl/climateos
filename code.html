@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClimateOS Brussels — High-Performance Journalism</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#93000a",
+                    "on-tertiary": "#003640",
+                    "primary-fixed-dim": "#ffba20",
+                    "on-secondary-fixed-variant": "#005321",
+                    "on-surface-variant": "#d5c4ab",
+                    "inverse-on-surface": "#2d3136",
+                    "surface-tint": "#ffba20",
+                    "outline": "#9e8f78",
+                    "on-tertiary-fixed": "#001f26",
+                    "on-background": "#e0e2ea",
+                    "tertiary": "#a5ebff",
+                    "on-primary-fixed-variant": "#5e4200",
+                    "primary-container": "#ffb800",
+                    "background": "#101419",
+                    "inverse-surface": "#e0e2ea",
+                    "tertiary-fixed-dim": "#4cd7f6",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#003915",
+                    "surface-container-high": "#262a30",
+                    "on-primary-container": "#6b4c00",
+                    "on-surface": "#e0e2ea",
+                    "surface-container": "#1c2025",
+                    "on-primary": "#412d00",
+                    "secondary": "#4ae176",
+                    "tertiary-container": "#49d5f4",
+                    "primary": "#ffdca1",
+                    "inverse-primary": "#7c5800",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "surface-variant": "#31353b",
+                    "secondary-container": "#00b954",
+                    "on-secondary-fixed": "#002109",
+                    "surface": "#101419",
+                    "surface-dim": "#101419",
+                    "secondary-fixed-dim": "#4ae176",
+                    "surface-container-lowest": "#0a0e13",
+                    "on-tertiary-container": "#005969",
+                    "secondary-fixed": "#6bff8f",
+                    "surface-container-highest": "#31353b",
+                    "tertiary-fixed": "#acedff",
+                    "outline-variant": "#514532",
+                    "surface-bright": "#36393f",
+                    "on-secondary-container": "#004119",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#181c21",
+                    "on-primary-fixed": "#271900",
+                    "on-error": "#690005",
+                    "primary-fixed": "#ffdea8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "32px",
+                    "container-max": "1440px",
+                    "element-gap": "24px",
+                    "section-padding": "120px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "data-mono": ["Geist"],
+                    "display-xl": ["Inter"],
+                    "label-caps": ["Geist"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["32px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "display-xl": ["96px", {"lineHeight": "90px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "60px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                    "headline-lg": ["40px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "body-lg": ["20px", {"lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0B0F14;
+            color: #e0e2ea;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-header {
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 20, 0.7);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 32px;
+        }
+
+        .spot-glow-sun { box-shadow: 0 0 80px rgba(255, 184, 0, 0.1); }
+        .spot-glow-tree { box-shadow: 0 0 80px rgba(74, 225, 118, 0.1); }
+        .spot-glow-cool { box-shadow: 0 0 80px rgba(73, 213, 244, 0.1); }
+
+        .hairline-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .mask-gradient {
+            mask-image: linear-gradient(to right, black 50%, transparent 50%);
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        .animate-pulse-slow { animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 glass-header border-b border-[#ffffff10]">
+<nav class="flex justify-between items-center w-full px-6 md:px-10 py-6 max-w-[1440px] mx-auto">
+<div class="font-headline-lg text-[24px] md:text-headline-lg font-bold tracking-tighter text-on-surface">ClimateOS</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 transition-colors duration-300" href="#">Brussels Summit</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Data Trilogy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Founder</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Press Assets</a>
+</div>
+<button class="px-6 py-3 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg scale-95 active:opacity-80 transition-all">
+                Get Press Kit
+            </button>
+</nav>
+</header>
+<main class="mt-[88px]">
+<!-- Hero Section -->
+<section class="relative min-h-[80vh] flex flex-col md:flex-row items-center overflow-hidden px-6 md:px-10 max-w-[1440px] mx-auto py-section-padding gap-gutter">
+<div class="flex-1 z-10 space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-primary">Live Data Stream</span>
+</div>
+<h1 class="font-display-xl text-[48px] md:text-display-xl leading-tight">
+                    ClimateOS <span class="text-primary">Brussels</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[540px]">
+                    Three free mini-apps helping people better live with climate extremes in Brussels. Designed for local intelligence, built for a global future.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="px-8 py-4 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg hover:bg-primary-container transition-colors">
+                        Download Press Kit
+                    </button>
+<button class="px-8 py-4 hairline-border text-on-surface font-label-caps text-label-caps rounded-lg hover:bg-surface-variant transition-colors">
+                        Contact Press
+                    </button>
+</div>
+</div>
+<div class="flex-1 relative w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden hairline-border group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPeyZkQZ7GmQcgP5VTnJPRFIkvO8wYqvs_UfJJZOSLZJVGkRL9U6LDdN2slX_v9lyVyXkc7DUotHjqa6PoSaZ_6DfzL4bjAjxmTkU1OlpX57JvH9SqYEUVEx7PLtegsnRiNPNVM4lVaZuMxBTmldaLRP5LvAnvYO2f_fdzwzcfrYuceLAwry5SGGjEhXKfKEnKNJAhSwmNljLTb2p8j-u_ECdHFtibkssg1UwLYa3PemVx0SbObK9OytBYC9oQLYNzsUE9vIM0dr5v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+<!-- Data Overlays -->
+<div class="absolute bottom-8 left-8 right-8 glass-header hairline-border p-6 rounded-2xl">
+<div class="flex justify-between items-end">
+<div>
+<div class="font-label-caps text-label-caps text-primary mb-1">REAL-TIME THERMAL SCAN</div>
+<div class="font-headline-lg text-[24px] font-bold">Brussels North District</div>
+</div>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-secondary">+6.2°C Delta</div>
+<div class="w-24 h-1 bg-surface-variant mt-2 rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-secondary"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trilogy Showcase -->
+<section class="px-6 md:px-10 max-w-[1440px] mx-auto py-section-padding">
+<div class="mb-16">
+<h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-4">THE DATA TRILOGY</h2>
+<h3 class="font-headline-lg text-headline-lg">Navigating the New Urban Climate.</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- SunSpots -->
+<div class="group relative bg-surface-container-low p-8 rounded-[24px] hairline-border spot-glow-sun transition-all hover:bg-surface-container-high">
+<div class="flex justify-between items-start mb-12">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container font-label-caps text-label-caps rounded-full">SunSpots</span>
+<span class="material-symbols-outlined text-primary" data-icon="light_mode">light_mode</span>
+</div>
+<div class="aspect-video w-full mb-8 rounded-xl overflow-hidden bg-surface-container-lowest hairline-border relative">
+<img class="w-full h-full object-cover opacity-60" data-alt="A stylized digital heat map of Brussels streets with intense glowing orange and yellow nodes indicating peak sun exposure areas. The map uses thin, crisp white lines for street grids against a dark navy background, emphasizing the technical, data-driven nature of the visualization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVZZTmteO5BotXrsCbG-iLevBqr1MnxVQqPaI-fsavgtyuv9dPDz0H81j-RuF8hlz1iuesaNgqNzr6XcRXwgi_GMaucuGzgBcfEngnfLh83xefrH2ALcLoHD9Z80Y9GdU21TX_HalklSODF6EfK5fYGJUqkxht2G8IZR_tqX-e2iAE5evqk6ZYGBvfI9nAIBrMccQYgDZBoVD_VQc-KGukQM7bvH0HBFJ3STyoE-mxDhv6W-Gh8rC67evaP5R31GMJthThtY4fU4KW"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-primary/20 animate-ping"></div>
+</div>
+</div>
+<h4 class="font-headline-lg text-[28px] mb-4">Find the sun</h4>
+<p class="font-body-md text-on-surface-variant">Real-time solar calculation for every terrace and public space in the city.</p>
+</div>
+<!-- TreeSpots -->
+<div class="group relative bg-surface-container-low p-8 rounded-[24px] hairline-border spot-glow-tree transition-all hover:bg-surface-container-high">
+<div class="flex justify-between items-start mb-12">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container font-label-caps text-label-caps rounded-full">TreeSpots</span>
+<span class="material-symbols-outlined text-secondary" data-icon="park">park</span>
+</div>
+<div class="aspect-video w-full mb-8 rounded-xl overflow-hidden bg-surface-container-lowest hairline-border">
+<img class="w-full h-full object-cover opacity-60" data-alt="A detailed aerial visualization of Brussels' canopy cover with emerald green pulses representing clusters of mature trees. The aesthetic is clean and minimal, with neon green accents highlighting shade-providing zones within the dense urban fabric of the city." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYKANCTNaVUThPMoyMnApjYUZUMMB9ZzCGHKoYTlorVbSEQwXqb_1lypyXjVwLRZQNUr97LjePjxX1BdD60o3ZJA_wOe2KY2Mhi_RuVigpJZP6rTt6YZi2nfJNn1oBIwb61MPcFiljlBbO9__12hjCzk56Ue_bva-tgx8lZyCf07HCBXo-4m-sRu7RMxV-eCmPUQcDXWr7PsxH1SyTalVFPHsFrznY482AVNeBtKil7Mu4ih4-Y2DmM60U4rSZiVvsq_DjyBmiKDh1"/>
+</div>
+<h4 class="font-headline-lg text-[28px] mb-4">Find the shade</h4>
+<p class="font-body-md text-on-surface-variant">Intelligent mapping of canopy coverage and natural shadows during heatwaves.</p>
+</div>
+<!-- CoolSpots -->
+<div class="group relative bg-surface-container-low p-8 rounded-[24px] hairline-border spot-glow-cool transition-all hover:bg-surface-container-high">
+<div class="flex justify-between items-start mb-12">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container font-label-caps text-label-caps rounded-full">CoolSpots</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="ac_unit">ac_unit</span>
+</div>
+<div class="aspect-video w-full mb-8 rounded-xl overflow-hidden bg-surface-container-lowest hairline-border">
+<img class="w-full h-full object-cover opacity-60" data-alt="A sophisticated data visualization showing cool air corridors in Brussels using ethereal light blue flowing patterns. The visualization feels airy and refreshing, contrasting against the dark architectural outlines of the city, highlighting pockets of thermal relief." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUFaKk0yeOhS41d1R4ENTUPRuHgGXi0EGGSrtX0EqhK45r0bfxpoRBGKBYXaW4rcXPfiPYVSdNTnrBRfo2fCvJmM_hk1fFQ3dJz5lkgD2XLCGFczzB1HLyARG5FSqgv3tL0iZfBX6eFLz7dIN1mNSlicO9VRaH2uiQepYhNCC-LX6wBOgCUvTOT3RPGQ5zEvOMUDIzYdRt3N6c7Kgq2LPcQxYDYxZVPaR7aNLFFiiQVUvL-50wOAeCvo0hdrttGXdwJurP8y6sO87K"/>
+</div>
+<h4 class="font-headline-lg text-[28px] mb-4">Find freshness</h4>
+<p class="font-body-md text-on-surface-variant">Locate public cool zones, water fountains, and thermally efficient architectural gems.</p>
+</div>
+</div>
+</section>
+<!-- Data Story -->
+<section class="bg-surface-container-lowest py-section-padding">
+<div class="px-6 md:px-10 max-w-[1440px] mx-auto">
+<div class="max-w-[800px] mb-16">
+<h2 class="font-headline-lg text-display-lg mb-6">From open data to climate navigation.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">We bridge the gap between abstract scientific datasets and the daily urban experience, transforming billions of data points into a tangible companion for the modern citizen.</p>
+</div>
+<div class="relative h-[60vh] md:h-[80vh] rounded-[32px] overflow-hidden hairline-border">
+<!-- Split View -->
+<div class="absolute inset-0 flex">
+<!-- Before -->
+<div class="relative flex-1 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-40" data-alt="A raw, monochromatic satellite view of Brussels' urban sprawl, showing dense grey building blocks and complex infrastructure without any data overlays. The lighting is harsh and documentary-style, emphasizing the complexity of raw urban information." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMcPqz_-czMUPvrvM8PSVwvkxvzW3h1GrZzNGT4xKEfK1bzTC4nM3VIBzFGjl1HAd0gn-edK0V4VBwa22vm9PvpAATRsqN7xIiH4IhyB2l6X5RAyK5hzPAQW0HNX-FS87wFVYmBF6HhBi7DLNV6nfKUfPHT0Vy8itA-Edp_ZzdsKa8O42mLzzlZaYlgZfphAe2r3BJCDGkAJwig8PWT8U6Mq610BS4VHR2PaIjqaJrC1hTA9uqZz98FlPzjJZqY8gLvbXOogplyCea"/>
+<div class="absolute top-8 left-8">
+<span class="px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full font-label-caps text-label-caps">Before — raw climate data</span>
+</div>
+</div>
+<!-- After -->
+<div class="relative flex-1 bg-surface-container-high overflow-hidden border-l-2 border-primary/50">
+<img class="w-full h-full object-cover" data-alt="The same view of Brussels but transformed with vibrant, multi-colored thermal data overlays in oranges, teals, and greens. Elegant typography labels key districts, and glowing heat contours reveal urban heat islands with surgical precision. The aesthetic is high-end editorial data visualization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOklazycZnyzhQFhDabUTpXCszZcI10yWH8SmH4oluzENd4GpWXO_P4kZzNQa4x9hmHkCAbWF8CULx8diFuo5vX-Nx72YBUuYcqQeW5wzJVtdaSaQQfVrOGuiP81f9byjF9PXWqulGTtSwRiosTVFBa8GF-hfMrqTs36owZeoRxsL3x5ufSwcGl0r7TLkvYX_QzW1ZPRGG4FlX4je0XsXDbSZDdA3jGI-0thscJWrTlh4MQ80Rn66K5nhgLTzUfe6GjfVj021SfhtN"/>
+<div class="absolute top-8 left-8">
+<span class="px-4 py-2 bg-primary/20 backdrop-blur-md border border-primary/30 rounded-full font-label-caps text-label-caps text-primary">After — climate intelligence</span>
+</div>
+</div>
+</div>
+<!-- Slider Handle -->
+<div class="absolute inset-y-0 left-1/2 w-1 bg-primary/30 -translate-x-1/2 hidden md:block">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-2xl">
+<span class="material-symbols-outlined" data-icon="unfold_more">unfold_more</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact Metrics -->
+<section class="px-6 md:px-10 max-w-[1440px] mx-auto py-section-padding">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="space-y-4">
+<div class="font-display-lg text-[48px] md:text-display-lg text-primary tracking-tighter">14</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Heatwave Days / 2023</div>
+</div>
+<div class="space-y-4">
+<div class="font-display-lg text-[48px] md:text-display-lg text-secondary tracking-tighter">+6.2°C</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Urban Heat Delta</div>
+</div>
+<div class="space-y-4">
+<div class="font-display-lg text-[48px] md:text-display-lg text-tertiary tracking-tighter">1.2M</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Datasets Aggregated</div>
+</div>
+<div class="space-y-4">
+<div class="font-display-lg text-[48px] md:text-display-lg text-on-surface tracking-tighter">842</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Cool Spots Indexed</div>
+</div>
+</div>
+</section>
+<!-- Founder Section -->
+<section class="bg-surface-container px-6 md:px-10 py-section-padding overflow-hidden">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row gap-20 items-center">
+<div class="w-full md:w-1/2 relative">
+<div class="aspect-[4/5] rounded-[40px] overflow-hidden hairline-border grayscale transition-all hover:grayscale-0">
+<img class="w-full h-full object-cover" data-alt="A professional yet soulful black and white portrait of a tech founder, Olivier 'Olo', looking thoughtfully into the distance. The lighting is soft and cinematic, with a dark, textured studio background that conveys an aura of expertise and creative passion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYwNu2dObpkG82Dap5qQOa1TbaISroc4zpLiaxDeoUguK2MlMDtXMPEvG1e6ts93MMjCB1Nm7XJvPWx73JkSVgqZHHP4UkmhpmigYlkU26k6xApIV8m9XwHB4VrWfWkDNUaw_XXZSSWlQtqoRrMV6vAZoKwL94bu1-xXvBBx2OnDzMFdphXsJzcGIeGk13zyWI--fvIXZdpYgG0S6g2-WTlLWP9J98iWARUcFnvLwkka4FsEu9pfbfvx42LqtOKter9149HLoWf1Or"/>
+</div>
+<div class="absolute -bottom-8 -right-8 w-48 h-48 bg-primary/10 rounded-full blur-[60px] animate-pulse-slow"></div>
+</div>
+<div class="w-full md:w-1/2 space-y-8">
+<h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em]">THE VISIONARY</h2>
+<h3 class="font-display-lg text-[40px] md:text-headline-lg">Built by a Brussels maker.</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        Olivier "Olo" is a developer and urbanist dedicated to radical transparency in climate data. After years of working with complex governmental APIs, he realized the missing link wasn't the data itself, but its accessibility to the average citizen.
+                    </p>
+<blockquote class="pl-8 border-l-4 border-primary italic font-body-lg text-[24px] text-on-surface">
+                        "I wanted to transform climate data into tools people can actually use. In the face of a warming planet, information isn't just power—it's safety."
+                    </blockquote>
+<div class="flex items-center gap-4">
+<div class="w-12 h-1 bg-primary"></div>
+<span class="font-label-caps text-label-caps text-on-surface">Olivier "Olo", Founder ClimateOS</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Press Assets -->
+<section class="px-6 md:px-10 max-w-[1440px] mx-auto py-section-padding">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div>
+<h2 class="font-label-caps text-label-caps text-primary mb-4 tracking-[0.2em]">PRESS ASSETS</h2>
+<h3 class="font-headline-lg text-headline-lg">Resources for Journalists.</h3>
+</div>
+<p class="font-body-md text-on-surface-variant max-w-[400px]">Download high-resolution imagery, logos, and technical specifications for editorial use.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Logos -->
+<div class="p-6 bg-surface-container-low rounded-2xl hairline-border flex flex-col justify-between h-[240px] group cursor-pointer hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="category">category</span>
+<div>
+<div class="font-headline-lg text-[20px] mb-2">Logos &amp; Identity</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">SVG • 4.2 MB</div>
+</div>
+</div>
+<!-- Screenshots -->
+<div class="p-6 bg-surface-container-low rounded-2xl hairline-border flex flex-col justify-between h-[240px] group cursor-pointer hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="screenshot">screenshot</span>
+<div>
+<div class="font-headline-lg text-[20px] mb-2">App Screenshots</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">PNG • 128 MB</div>
+</div>
+</div>
+<!-- Portraits -->
+<div class="p-6 bg-surface-container-low rounded-2xl hairline-border flex flex-col justify-between h-[240px] group cursor-pointer hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="portrait">portrait</span>
+<div>
+<div class="font-headline-lg text-[20px] mb-2">Founder Portraits</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">JPG • 45 MB</div>
+</div>
+</div>
+<!-- PDF -->
+<div class="p-6 bg-surface-container-low rounded-2xl hairline-border flex flex-col justify-between h-[240px] group cursor-pointer hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div>
+<div class="font-headline-lg text-[20px] mb-2">Press Release PDF</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">PDF • 1.2 MB</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-[#ffffff10] pt-section-padding pb-gutter">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 w-full max-w-[1440px] mx-auto gap-8">
+<div class="space-y-4">
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tighter">ClimateOS</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-80 uppercase">© 2024 ClimateOS. High-Performance Journalism.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="#">Contact Press Office</a>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
+</div>
+<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="rss_feed">rss_feed</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for scrolling reveal or hover effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            // Apply fade-in animation to sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        });
+    </script>
+</body></html>
